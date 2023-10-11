@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    All Quotes
+{% endblock %}
+
+{% block stylesheets %}
+<style></style>
+{% endblock %}
+
+{% block body %}
+{% for quote in quotes %}
+    <p>{{ quote.movie.name }}</p>
+    <p>{{ quote.movie.releaseYear }}</p>
+    <p>{{ quote.quote }}</p>
+    <p>{{ quote.character }}</p>
+{% endfor %}
+{% endblock %}
