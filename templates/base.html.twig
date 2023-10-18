@@ -4,6 +4,30 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <style>
+            * {
+                font-family: sans-serif;
+            }
+
+            a {
+                border: 2px solid #218BC3;
+                border-radius: 3px;
+                text-decoration: none;
+                height: 30px;
+                width: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background: lightskyblue;
+                color: #183691;
+                margin: 2px;
+            }
+
+            hr {
+                border: none;
+                border-top: dashed 3px #183691;
+            }
+        </style>
         {% block stylesheets %}
         {% endblock %}
 

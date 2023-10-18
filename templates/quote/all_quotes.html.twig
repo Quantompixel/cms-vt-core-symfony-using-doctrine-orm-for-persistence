@@ -12,13 +12,15 @@
     <a href="{{ path('create_quote') }}">Add new quote</a>
     <a href="{{ path('create_movie') }}">Add new movie</a>
 
+    <hr>
     {% for quote in quotes %}
-        <p>{{ quote.movie.name }}</p>
-        <p>{{ quote.movie.releaseYear }}</p>
-        <p>{{ quote.quote }}</p>
-        <p>{{ quote.character }}</p>
+        <p>"{{ quote.quote }}"</p>
+        <p>~ <i>{{ quote.character }}</i></p>
+        <p>MOVIE: {{ quote.movie.name }}</p>
+        <p>RELEASED IN: {{ quote.movie.releaseYear }}</p>
         <a href="{{ path('remove_quote', {'id': quote.id}) }}">
             Delete Quote
         </a>
+        <hr>
     {% endfor %}
 {% endblock %}

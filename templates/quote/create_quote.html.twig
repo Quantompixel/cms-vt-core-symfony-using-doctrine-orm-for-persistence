@@ -1,2 +1,14 @@
-{{ form(form) }}
-<a href="{{ path('all_quotes') }}">Go Back</a>
+{% extends "base.html.twig" %}
+
+{% block title %}
+    Create Quote
+{% endblock %}
+
+{% block stylesheets %}
+    <style></style>
+{% endblock %}
+
+{% block body %}
+    {{ form(form) }}
+    <a href="{{ path('all_quotes') }}">Go Back</a>
+{% endblock %}

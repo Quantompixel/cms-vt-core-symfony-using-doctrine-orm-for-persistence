@@ -18,6 +18,8 @@ class QuoteController extends AbstractController
     {
         $quotes = $movieQuoteRepository->findAll();
 
+        $quotes = $this->sortQuotes($quotes);
+
         return $this->render('quote/all_quotes.html.twig', [
             'quotes' => $quotes
         ]);
@@ -58,5 +60,26 @@ class QuoteController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('all_quotes');
+    }
+
+    private function sortQuotes($quotes): array
+    {
+        usort($quotes, function (MovieQuote $a, MovieQuote $b) {
+            if (strcmp($a->getMovie()->getName(), $b->getMovie()->getName()) != 0) {
+                return strcmp($a->getMovie()->getName(), $b->getMovie()->getName());
+            }
+
+            if ($a->getMovie()->getReleaseYear() != $b->getMovie()->getReleaseYear()) {
+                return ($a->getMovie()->getReleaseYear() < $b->getMovie()->getReleaseYear()) ? -1 : 1;
+            }
+
+            if (strcmp($a->getQuote(), $b->getQuote()) != 0) {
+                return strcmp($a->getQuote(), $b->getQuote());
+            }
+
+            return strcmp($a->getCharacter(), $b->getCharacter());
+        });
+
+        return $quotes;
     }
 }
