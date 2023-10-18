@@ -14,7 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuoteController extends AbstractController
 {
     #[Route('/all-quotes', name: 'all_quotes')]
-    public function allQuotes(MovieQuoteRepository $movieQuoteRepository, EntityManagerInterface $entityManager): Response {
+    public function allQuotes(MovieQuoteRepository $movieQuoteRepository): Response
+    {
         $quotes = $movieQuoteRepository->findAll();
 
         return $this->render('quote/all_quotes.html.twig', [
@@ -42,5 +43,20 @@ class QuoteController extends AbstractController
         return $this->render('quote/create_quote.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[Route('/remove-quote/{id}', name: 'remove_quote')]
+    public function removeQuote(int $id, EntityManagerInterface $entityManager, MovieQuoteRepository $movieQuoteRepository): Response
+    {
+        $quote = $movieQuoteRepository->find($id);
+
+        if ($quote == null) {
+            return new Response("Quote with ID " . $id . " does not exist");
+        }
+
+        $entityManager->remove($quote);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('all_quotes');
     }
 }

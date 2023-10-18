@@ -5,14 +5,20 @@
 {% endblock %}
 
 {% block stylesheets %}
-<style></style>
+    <style></style>
 {% endblock %}
 
 {% block body %}
-{% for quote in quotes %}
-    <p>{{ quote.movie.name }}</p>
-    <p>{{ quote.movie.releaseYear }}</p>
-    <p>{{ quote.quote }}</p>
-    <p>{{ quote.character }}</p>
-{% endfor %}
+    <a href="{{ path('create_quote') }}">Add new quote</a>
+    <a href="{{ path('create_movie') }}">Add new movie</a>
+
+    {% for quote in quotes %}
+        <p>{{ quote.movie.name }}</p>
+        <p>{{ quote.movie.releaseYear }}</p>
+        <p>{{ quote.quote }}</p>
+        <p>{{ quote.character }}</p>
+        <a href="{{ path('remove_quote', {'id': quote.id}) }}">
+            Delete Quote
+        </a>
+    {% endfor %}
 {% endblock %}
