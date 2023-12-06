@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class QuoteController extends AbstractController
 {
@@ -26,7 +27,7 @@ class QuoteController extends AbstractController
     }
 
     #[Route('/create-quote', name: 'create_quote')]
-    public function createQuote(Request $request, EntityManagerInterface $entityManager): Response
+    public function createQuote(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): Response
     {
         $movieQuote = new MovieQuote();
 
@@ -35,6 +36,12 @@ class QuoteController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $movieQuote = $form->getData();
+
+            $errors = $validator->validate($movieQuote);
+
+            if (sizeof($errors) > 0) {
+                echo $errors;
+            }
 
             $entityManager->persist($movieQuote);
             $entityManager->flush();

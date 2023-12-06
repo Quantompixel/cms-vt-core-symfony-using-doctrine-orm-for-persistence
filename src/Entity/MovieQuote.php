@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MovieQuoteRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MovieQuoteRepository::class)]
@@ -22,6 +23,9 @@ class MovieQuote
     #[ORM\ManyToOne(inversedBy: 'movieQuotes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Movie $movie = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $time = null;
 
     public function getId(): ?int
     {
@@ -60,6 +64,18 @@ class MovieQuote
     public function setMovie(?Movie $movie): static
     {
         $this->movie = $movie;
+
+        return $this;
+    }
+
+    public function getTime(): ?\DateTimeInterface
+    {
+        return $this->time;
+    }
+
+    public function setTime(?\DateTimeInterface $time): static
+    {
+        $this->time = $time;
 
         return $this;
     }
