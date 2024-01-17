@@ -12,7 +12,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class MovieController extends AbstractController
 {
-    #[Route('/create-movie', name: 'create_movie')]
+    #[Route(path: [
+        'en' => '/create-movie',
+        'de' => '/film-erstellen'
+    ], name: 'create_movie')]
     public function createQuote(Request $request, EntityManagerInterface $entityManager): Response
     {
         $movie = new Movie();

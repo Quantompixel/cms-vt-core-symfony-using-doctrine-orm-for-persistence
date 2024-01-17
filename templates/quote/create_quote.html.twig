@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    Create Quote
+    {{ 'Create Quote'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -10,5 +10,5 @@
 
 {% block body %}
     {{ form(form) }}
-    <a href="{{ path('all_quotes') }}">Go Back</a>
+    <a href="{{ path('all_quotes') }}">{{ 'Go Back'|trans }}</a>
 {% endblock %}

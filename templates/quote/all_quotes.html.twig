@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block body %}
-    <a href="http://127.0.0.1:8000/{{ _locale=='en'?'alle-zitate':'all-quotes' }}">{{ 'Switch to German'|trans }}</a>
+    <a href="http://127.0.0.1:8000/{{ _locale == 'en' ? 'alle-zitate' : 'all-quotes' }}">{{ 'Switch to German'|trans }}</a>
     <a href="{{ path('create_quote') }}">{{ 'Add new Quote'|trans }}</a>
     <a href="{{ path('create_movie') }}">{{ 'Add new Movie'|trans }}</a>
 

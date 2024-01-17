@@ -34,6 +34,18 @@
                 <source>Delete Quote</source>
                 <target>Zitat löschen</target>
             </trans-unit>
+            <trans-unit id="9">
+                <source>Create Quote</source>
+                <target>Zitat erstellen</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Go Back</source>
+                <target>Zurück</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Create Movie</source>
+                <target>Film erstellen</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

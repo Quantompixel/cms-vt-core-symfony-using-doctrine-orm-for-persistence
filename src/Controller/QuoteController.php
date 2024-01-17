@@ -29,7 +29,10 @@ class QuoteController extends AbstractController
         ]);
     }
 
-    #[Route('/create-quote', name: 'create_quote')]
+    #[Route(path: [
+        'en' => '/create-quote',
+        'de' => '/zitat-erstellen'
+    ], name: 'create_quote')]
     public function createQuote(Request $request, EntityManagerInterface $entityManager): Response
     {
         $movieQuote = new MovieQuote();
@@ -51,7 +54,10 @@ class QuoteController extends AbstractController
         ]);
     }
 
-    #[Route('/remove-quote/{id}', name: 'remove_quote')]
+    #[Route(path: [
+        'en' => '/remove-quote/{id}',
+        'de' => 'zitate-loeschen/{id}'
+    ], name: 'remove_quote')]
     public function removeQuote(int $id, EntityManagerInterface $entityManager, MovieQuoteRepository $movieQuoteRepository): Response
     {
         $quote = $movieQuoteRepository->find($id);
