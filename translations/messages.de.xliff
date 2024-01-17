@@ -46,6 +46,30 @@
                 <source>Create Movie</source>
                 <target>Film erstellen</target>
             </trans-unit>
+            <trans-unit id="12">
+                <source>Quote</source>
+                <target>Zitat</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Character</source>
+                <target>Figur</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Movie</source>
+                <target>Film</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Save</source>
+                <target>Speichern</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Release Year</source>
+                <target>Veröffentlichungsjahr</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
