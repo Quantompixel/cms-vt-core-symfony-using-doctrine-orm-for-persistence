@@ -22,6 +22,12 @@ class MovieQuoteType extends AbstractType
                 'constraints' => [new DoubleLetter()]
             ])
             ->add('character', TextType::class)
+            ->add('time', DateTimeType::class,  [
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                'html5'=>false,
+                'format'=>'yyyy-MM-dd HH:mm',
+            ])
             ->add('movie', EntityType::class, [
                 'class' => Movie::class,
                 'choice_label' => 'name',

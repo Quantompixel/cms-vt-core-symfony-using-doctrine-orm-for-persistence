@@ -29,7 +29,22 @@ class DoubleLetterValidator extends ConstraintValidator
             // throw new UnexpectedValueException($value, 'string|int');
         }
 
-        if (preg_match('/^apple$/', $value, $matches)) {
+        $input = strtolower($value);
+
+        $letters = [];
+        $doubleLetters = [];
+
+        for ($index = 0; $index < strlen($input); $index++) {
+            $letter = $input[$index];
+
+            if (in_array($letter, $letters)) {
+                $doubleLetters[] = $letter;
+            }
+
+            $letters[] = $letter;
+        }
+
+        if (sizeof($doubleLetters) == sizeof($letters) / 2) {
             return;
         }
 
