@@ -13,15 +13,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class QuoteController extends AbstractController
 {
-    #[Route('/all-quotes', name: 'all_quotes')]
-    public function allQuotes(MovieQuoteRepository $movieQuoteRepository): Response
+    #[Route(path: [
+        'en' => '/all-quotes',
+        'de' => '/alle-zitate'
+    ], name: 'all_quotes')]
+    public function allQuotes(Request $request, MovieQuoteRepository $movieQuoteRepository): Response
     {
         $quotes = $movieQuoteRepository->findAll();
 
         $quotes = $this->sortQuotes($quotes);
 
         return $this->render('quote/all_quotes.html.twig', [
-            'quotes' => $quotes
+            'quotes' => $quotes,
+            "_locale" => $request->getLocale()
         ]);
     }
 

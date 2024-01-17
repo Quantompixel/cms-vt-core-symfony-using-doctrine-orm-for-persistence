@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-    All Quotes
+    {{ 'All Quotes'|trans }}
 {% endblock %}
 
 {% block stylesheets %}
@@ -9,17 +9,18 @@
 {% endblock %}
 
 {% block body %}
-    <a href="{{ path('create_quote') }}">Add new quote</a>
-    <a href="{{ path('create_movie') }}">Add new movie</a>
+    <a href="http://127.0.0.1:8000/{{ _locale=='en'?'alle-zitate':'all-quotes' }}">{{ 'Switch to German'|trans }}</a>
+    <a href="{{ path('create_quote') }}">{{ 'Add new Quote'|trans }}</a>
+    <a href="{{ path('create_movie') }}">{{ 'Add new Movie'|trans }}</a>
 
     <hr>
     {% for quote in quotes %}
         <p>"{{ quote.quote }}"</p>
         <p>~ <i>{{ quote.character }}</i></p>
-        <p>MOVIE: {{ quote.movie.name }}</p>
-        <p>RELEASED IN: {{ quote.movie.releaseYear }}</p>
+        <p>{{ 'MOVIE'|trans }}: {{ quote.movie.name }}</p>
+        <p>{{ 'RELEASED IN'|trans }}: {{ quote.movie.releaseYear }}</p>
         <a href="{{ path('remove_quote', {'id': quote.id}) }}">
-            Delete Quote
+            {{ 'Delete Quote'|trans }}
         </a>
         <hr>
     {% endfor %}
