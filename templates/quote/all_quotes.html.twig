@@ -14,8 +14,8 @@
 
     <hr>
     {% for quote in quotes %}
-        <p>"{{ quote.quote }}"</p>
-        <p>~ <i>{{ quote.character }}</i></p>
+        <p>{{ quote.quote|quote }}</p>
+        <p><i>{{ quote.character|characterName }}</i></p>
         <p>MOVIE: {{ quote.movie.name }}</p>
         <p>RELEASED IN: {{ quote.movie.releaseYear }}</p>
         <a href="{{ path('remove_quote', {'id': quote.id}) }}">
