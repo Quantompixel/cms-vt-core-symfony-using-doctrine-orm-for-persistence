@@ -40,6 +40,14 @@ class QuoteController extends AbstractController
         ]);
     }
 
+    #[Route('/quote/{id}', name: 'one_quote')]
+    public function getQuote(MovieQuote $movieQuote): Response
+    {
+        return $this->render('quote/all_quotes.html.twig', [
+            'quotes' => [$movieQuote]
+        ]);
+    }
+
     #[Route('/create-quote', name: 'create_quote')]
     public function createQuote(Request $request, EntityManagerInterface $entityManager): Response
     {
