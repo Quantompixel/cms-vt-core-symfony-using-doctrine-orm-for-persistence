@@ -14,11 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuoteController extends AbstractController
 {
     #[Route('/all-quotes', name: 'all_quotes')]
-    public function allQuotes(MovieQuoteRepository $movieQuoteRepository): Response
+    public function allQuotes(MovieQuoteRepository $movieQuoteRepository, Request $request): Response
     {
-        $quotes = $movieQuoteRepository->findAll();
+        $searchTerm = $request->query->get("search");
 
+        if ($searchTerm) {
+            $quotes = $movieQuoteRepository->findBySearch($searchTerm);
+        } else {
+            $quotes = $movieQuoteRepository->findAll();
+        }
         $quotes = $this->sortQuotes($quotes);
+
+        return $this->render('quote/all_quotes.html.twig', [
+            'quotes' => $quotes
+        ]);
+    }
+
+    #[Route('/random', name: 'random')]
+    public function randomQuote(MovieQuoteRepository $movieQuoteRepository)
+    {
+        $quotes = $movieQuoteRepository->findRandom();
 
         return $this->render('quote/all_quotes.html.twig', [
             'quotes' => $quotes
